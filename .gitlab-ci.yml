@@ -1,0 +1,18 @@
+build:
+  stage: build
+  image: fedora
+  before_script:
+    - 'dnf install golang-golang-x-crypto-dev'
+  script:
+    - git clone https://github.com/wybiral/torgo.git
+    - cd torgo
+    - git checkout a19a6c8a50489e2fdf37223edc5f1284bb965308
+    - cd ..
+    - mv torgo/ torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308
+    - tar zcf torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308.tar.gz torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308
+    - fedpkg --release f31 local
+    - mkdir f31
+    - find . -name *rpm --exec mv {} f31 \;
+  artifacts:
+    paths:
+      - 'f31/*.rpm'

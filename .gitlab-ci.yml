@@ -2,7 +2,7 @@ build:
   stage: build
   image: fedora
   before_script:
-    - 'dnf install golang-golang-x-crypto-dev'
+    - 'dnf install golang-x-crypto-devel'
   script:
     - git clone https://github.com/wybiral/torgo.git
     - cd torgo

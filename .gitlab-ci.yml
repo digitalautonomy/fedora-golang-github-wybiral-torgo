@@ -12,7 +12,7 @@ build:
     - tar zcf torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308.tar.gz torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308
     - fedpkg --release f31 local
     - mkdir f31
-    - find . -name *rpm --exec mv {} f31 \;
+    - find . -name *rpm -exec mv {} f31 \;
   artifacts:
     paths:
       - 'f31/*.rpm'

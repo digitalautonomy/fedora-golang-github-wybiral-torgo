@@ -21,7 +21,7 @@ build:
     - 'find . -name "*fc30*.rpm" -exec mv {} f30 \;'
     - fedpkg --release f31 local
     - 'find . -name "*fc31*.rpm" -exec mv {} f31 \;'
-    - 'ssh fedora-repo@fedora.autonomia.digital ls'  
+    - 'ssh -p4242  fedora-repo@fedora.autonomia.digital ls'  
       #- 'scp -r -P4242 f30/* fedora-repo@fedora.autonomia.digital:packages/upload/f30'
       #- 'scp -r -P4242 f31/* fedora-repo@fedora.autonomia.digital:packages/upload/f31'
   artifacts:

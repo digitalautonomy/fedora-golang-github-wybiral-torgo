@@ -1,7 +1,14 @@
 build:
   stage: build
   image: rbonifaz/wahay-rpm-build:latest
-  #before_script:
+  before_script:
+    - "eval $(ssh-agent -s)"
+    - 'ssh-add <(echo "$FEDORA_PACKAGING_PRIVATE_KEY")'
+    - mkdir -p ~/.ssh; chmod 700 ~/.ssh
+    - 'echo -e "|1|jPkxqCklTI82PLhPHoRu9vIurWE=|PQs6HHnIxO5d4jB10MEHyGXGXUY= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA+S9cxalyZTvViN9YMWBcgRa1+6vowFN6IyNATxCXA6qJKpvTFSPhIDUAAVbXrvgePX/0TikTXEB7kF/kKLJvU=" >> ~/.ssh/known_hosts'
+    - 'echo -e "|1|Qa3Dvu8yAHztx1Zab7a4SKkzZLQ=|1SrVpt/U4jsvvQar1G4FiAP/tOA= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA+S9cxalyZTvViN9YMWBcgRa1+6vowFN6IyNATxCXA6qJKpvTFSPhIDUAAVbXrvgePX/0TikTXEB7kF/kKLJvU=" >> ~/.ssh/known_hosts'
+    - chmod 644 ~/.ssh/known_hosts
+
   script:
     - git clone https://github.com/wybiral/torgo.git
     - cd torgo
@@ -14,6 +21,8 @@ build:
     - 'find . -name "*fc30*.rpm" -exec mv {} f30 \;'
     - fedpkg --release f31 local
     - 'find . -name "*fc31*.rpm" -exec mv {} f31 \;'
+    - scp -r f30/* fedora-repo@fedora.autonomia.digital:packages/upload/f30
+    - scp -r f31/* fedora-repo@fedora.autonomia.digital:packages/upload/f31
   artifacts:
     paths:
       - 'f30/'

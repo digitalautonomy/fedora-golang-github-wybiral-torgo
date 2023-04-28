@@ -3,7 +3,7 @@
 
 # https://github.com/wybiral/torgo
 %global goipath         github.com/wybiral/torgo
-%global commit          a19a6c8a50489e2fdf37223edc5f1284bb965308
+%global commit          5fd9910eab3125e20055492e54cdee2e11574aa1
 
 %gometa
 
@@ -15,7 +15,7 @@ A Golang library for Tor.}
 
 Name:           %{goname}
 Version:        0
-Release:        0.1%{?dist}
+Release:        0.2%{?dist}
 Summary:        A Golang library for Tor
 
 License:        GPL-3.0-only
@@ -46,6 +46,9 @@ BuildRequires:  golang(golang.org/x/net/proxy)
 %gopkgfiles
 
 %changelog
+* Fri Apr 28 17:00:00 -05 2023 CAD <fedora@autonomia.digital> - 0-0.2.20201209git5fd9910
+- Update torgo version and build for more fedora versions
 * Fri Mar 13 16:35:29 -05 2020 rafael <rafael@autonomia.digital> - 0-0.1.20200313gita19a6c8
 - Initial package
+
 

@@ -11,18 +11,8 @@ build:
   script:
     - git clone https://github.com/wybiral/torgo.git
     - cd torgo
-    - git checkout a19a6c8a50489e2fdf37223edc5f1284bb965308
+    - git checkout 5fd9910eab3125e20055492e54cdee2e11574aa1
     - cd ..
-    - mv torgo/ torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308
-    - tar zcf torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308.tar.gz torgo-a19a6c8a50489e2fdf37223edc5f1284bb965308
-    - mkdir f30 f31
-    - fedpkg --release f30 local
-    - 'find . -name "*fc30*.rpm" -exec mv {} f30 \;'
-    - fedpkg --release f31 local
-    - 'find . -name "*fc31*.rpm" -exec mv {} f31 \;'
-    - 'scp -r -P4243 f30/* fedora-repo@fedora.autonomia.digital:packages/upload/f30'
-    - 'scp -r -P4243 f31/* fedora-repo@fedora.autonomia.digital:packages/upload/f31'
-  artifacts:
-    paths:
-      - 'f30/'
-      - 'f31/'
+    - mv torgo/ torgo-5fd9910eab3125e20055492e54cdee2e11574aa1
+    - tar zcf torgo-5fd9910eab3125e20055492e54cdee2e11574aa1.tar.gz torgo-5fd9910eab3125e20055492e54cdee2e11574aa1
+    - ./build_all.sh f30 f31 f32 f33 f34 f35 f36 f37 f38
